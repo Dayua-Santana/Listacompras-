@@ -1,0 +1,182 @@
+using ListaCompras.ConsoleApp.Compartilhado;
+using ListaCompras.ConsoleApp.Utilidades;
+
+namespace ListaCompras.ConsoleApp.Compartilhado;
+
+public abstract class TelaBase<T> where T : EntidadeBase
+{
+    protected string nomeEntidade;
+    protected RepositorioBase<T> repositorio;
+
+    protected TelaBase(string nomeEntidade, RepositorioBase<T> repositorio)
+    {
+        this.nomeEntidade = nomeEntidade;
+        this.repositorio = repositorio;
+    }
+
+    protected virtual List<string> ValidarExclusaoRegistro(T registro)
+    {
+        return new List<string>();
+    }
+    public string? ObterOpcaoMenu()
+    {
+        string nomeMinusculo = nomeEntidade.ToLower();
+
+        Console.Clear();
+        Console.WriteLine("-------------------------------------------------");
+        Console.WriteLine($"Gestão de {nomeEntidade}");
+        Console.WriteLine("-------------------------------------------------");
+        Console.WriteLine($"1 - Cadastrar {nomeMinusculo}");
+        Console.WriteLine($"2 - Editar {nomeMinusculo}");
+        Console.WriteLine($"3 - Excluir {nomeMinusculo}");
+        Console.WriteLine($"4 - Visualizar {nomeMinusculo}s");
+        Console.WriteLine("S - Voltar para o início");
+        Console.WriteLine("---------------------------------");
+        Console.Write("> ");
+
+        string? opcaoMenu = Console.ReadLine()?.ToUpper();
+
+        return opcaoMenu;
+    }
+
+    public void Cadastrar()
+    {
+        ExibirCabecalho($"Cadastro de {nomeEntidade}");
+
+        T novaEntidade = ObterDadosCadastrais();
+
+        List<string> erros = novaEntidade.Validar();
+
+        if (erros.Count > 0)
+        {
+            Notificador.ExibirMensagensErro(erros);
+
+            Cadastrar();
+            return;
+        }
+
+        List<string> errosDuplicacao = ValidarRegistroDuplicado(novaEntidade);
+
+        if (errosDuplicacao.Count > 0)
+        {
+            Notificador.ExibirMensagensErro(errosDuplicacao);
+
+            Cadastrar();
+            return;
+        }
+
+        repositorio.Cadastrar(novaEntidade);
+
+        Notificador.ExibirMensagem($"O registro \"{novaEntidade.Id}\" foi cadastrado com sucesso!");
+    }
+
+    public void Editar()
+    {
+        ExibirCabecalho($"Edição de {nomeEntidade}");
+        VisualizarTodos(deveExibirCabecalho: false);
+
+        Console.WriteLine("----------------------------------------------");
+
+        string? idSelecionado;
+
+        while (true)
+        {
+            Console.Write("Digite o ID do registro que deseja editar (ou S para sair): ");
+            idSelecionado = Console.ReadLine();
+
+            if (idSelecionado == "S")
+                return;
+
+            if (!string.IsNullOrWhiteSpace(idSelecionado) && idSelecionado.Length == 7)
+                break;
+        }
+
+        Console.WriteLine("-------------------------------------------------------");
+
+        T novaEntidade = ObterDadosCadastrais();
+
+        List<string> erros = novaEntidade.Validar();
+
+        if (erros.Count > 0)
+        {
+            Notificador.ExibirMensagensErro(erros);
+
+            Editar();
+            return;
+        }
+
+        List<string> errosDuplicacao = ValidarRegistroDuplicado(novaEntidade, idSelecionado);
+
+        if (errosDuplicacao.Count > 0)
+        {
+            Notificador.ExibirMensagensErro(errosDuplicacao);
+            Editar();
+            return;
+        }
+
+        bool conseguiuEditar = repositorio.Editar(idSelecionado, novaEntidade);
+
+        if (!conseguiuEditar)
+        {
+            Notificador.ExibirMensagem("Não foi possivel encontrar o registro requisistado.");
+            return;
+        }
+
+        Notificador.ExibirMensagem($"o registro \"{idSelecionado}\" foi editado com sucesso.");
+    }
+
+    public void Excluir()
+    {
+        ExibirCabecalho($"Exclusão de {nomeEntidade}");
+
+        VisualizarTodos(deveExibirCabecalho: false);
+        Console.WriteLine("----------------------------------------");
+
+        string? idSelecionado;
+
+        do
+        {
+            Console.Write("Digite o ID do registro que deseja excluir(ou S para sair): ");
+            idSelecionado = Console.ReadLine() ?? string.Empty;
+
+            if (idSelecionado.ToUpper() == "S")
+                return;
+
+            if (idSelecionado.Length == 7)
+                break;
+        } while (true);
+
+        T? registroSelecionado = repositorio.SelecionarPorId(idSelecionado);
+
+        if (registroSelecionado == null)
+        {
+            Notificador.ExibirMensagem("Não foi possivel encontrar o registro requisitado.");
+
+            Excluir();
+            return;
+        }
+
+        repositorio.Excluir(registroSelecionado);
+
+        Notificador.ExibirMensagem($"O registro \"{idSelecionado}\" foi excluido com sucesso.");
+    }
+
+    public abstract void VisualizarTodos(bool deveExibirCabecalho);
+
+    protected void ExibirCabecalho(string titulo)
+    {
+        Console.Clear();
+        Console.WriteLine("------------------------------------");
+        Console.WriteLine($"Gestão de {nomeEntidade}");
+        Console.WriteLine("---------------------------------------");
+        Console.WriteLine(titulo);
+        Console.WriteLine("---------------------------------------");
+    }
+
+    protected virtual List<string> ValidarRegistroDuplicado(T novaEntidade, string? idIgnorado = null)
+    {
+        return new List<string>();
+    }
+
+    protected abstract T ObterDadosCadastrais();
+}
