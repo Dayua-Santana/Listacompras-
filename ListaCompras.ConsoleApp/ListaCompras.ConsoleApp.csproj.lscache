@@ -69,6 +69,7 @@ ModuloListaCompras/
  Item.cs
  ListaCompras.cs
  RepositorioListaCompras.cs
+ StatusLista.cs
  TelaListaCompras.cs
 ModuloProduto/
  Produto.cs

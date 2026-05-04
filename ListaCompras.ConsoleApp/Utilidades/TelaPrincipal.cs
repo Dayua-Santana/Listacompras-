@@ -7,7 +7,6 @@ namespace ListaCompras.ConsoleApp.Utilidades;
 
 public class TelaPrincipal
 {
-    TelaListaCompras teste;
     private readonly RepositorioCategoria repositorioCategoria = new RepositorioCategoria();
 
     private readonly RepositorioProduto repositorioProduto = new RepositorioProduto();

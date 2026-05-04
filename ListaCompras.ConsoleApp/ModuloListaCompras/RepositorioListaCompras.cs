@@ -7,25 +7,14 @@ public class RepositorioListaCompras : RepositorioBase<ListaCompras>
 {
     public List<ListaCompras> SelecionarAbertas()
     {
-        List<ListaCompras> abertas = new List<ListaCompras>();
-        foreach (ListaCompras lista in registros)
-        {
-            if (lista.Status == StatusLista.Aberta)
-                abertas.Add(lista);
-        }
-
-        return abertas;
+        return registros
+                .Where(lista => lista.Status == StatusLista.Aberta)
+                .ToList();
     }
     public List<ListaCompras> SelecionarConcluidas()
     {
-        List<ListaCompras> concluidas = new List<ListaCompras>();
-
-        foreach (ListaCompras lista in registros)
-        {
-            if (lista.status == StatusLista.Concluida)
-                concluidas.Add(lista);
-        }
-
-        return concluidas;
+        return registros
+            .Where(lista => lista.Status == StatusLista.Concluida)
+            .ToList();
     }
 }

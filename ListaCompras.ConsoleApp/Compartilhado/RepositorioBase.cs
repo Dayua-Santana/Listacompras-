@@ -4,6 +4,7 @@ public abstract class RepositorioBase<T> where T : EntidadeBase
 {
     protected List<T> registros = new List<T>();
 
+
     public void Cadastrar(T entidade) => registros.Add(entidade);
 
 
