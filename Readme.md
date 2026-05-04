@@ -2,6 +2,8 @@
 
 Sistema de console desenvolvido em C# para gestão de listas de compras, permitindo o controle de produtos, categorias e itens vinculados a listas específicas.
 
+![alt text](ListaCompras.ConsoleApp_0cgiBbFBVr.gif)
+
 ## 🚀 Funcionalidades
 
 - **Gestão de Produtos:** Cadastro de itens com nome, categoria e preço aproximado.
