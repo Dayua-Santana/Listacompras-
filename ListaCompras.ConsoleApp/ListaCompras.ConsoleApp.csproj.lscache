@@ -65,6 +65,11 @@ ModuloCategoria/
  CorCategoria.cs
  RepositorioCategoria.cs
  TelaCategoria.cs
+ModuloListaCompras/
+ Item.cs
+ ListaCompras.cs
+ RepositorioListaCompras.cs
+ TelaListaCompras.cs
 ModuloProduto/
  Produto.cs
  RepositorioProduto.cs
