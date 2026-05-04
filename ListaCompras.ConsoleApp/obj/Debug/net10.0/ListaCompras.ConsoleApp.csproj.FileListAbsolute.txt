@@ -2,13 +2,4 @@ C:\Users\yuajs\Desktop\Listacompras@\ListaCompras.ConsoleApp\obj\Debug\net10.0\L
 C:\Users\yuajs\Desktop\Listacompras@\ListaCompras.ConsoleApp\obj\Debug\net10.0\ListaCompras.ConsoleApp.AssemblyInfoInputs.cache
 C:\Users\yuajs\Desktop\Listacompras@\ListaCompras.ConsoleApp\obj\Debug\net10.0\ListaCompras.ConsoleApp.AssemblyInfo.cs
 C:\Users\yuajs\Desktop\Listacompras@\ListaCompras.ConsoleApp\obj\Debug\net10.0\ListaCompras.ConsoleApp.csproj.CoreCompileInputs.cache
-C:\Users\yuajs\Desktop\Listacompras@\ListaCompras.ConsoleApp\bin\Debug\net10.0\ListaCompras.ConsoleApp.exe
-C:\Users\yuajs\Desktop\Listacompras@\ListaCompras.ConsoleApp\bin\Debug\net10.0\ListaCompras.ConsoleApp.deps.json
-C:\Users\yuajs\Desktop\Listacompras@\ListaCompras.ConsoleApp\bin\Debug\net10.0\ListaCompras.ConsoleApp.runtimeconfig.json
-C:\Users\yuajs\Desktop\Listacompras@\ListaCompras.ConsoleApp\bin\Debug\net10.0\ListaCompras.ConsoleApp.dll
-C:\Users\yuajs\Desktop\Listacompras@\ListaCompras.ConsoleApp\bin\Debug\net10.0\ListaCompras.ConsoleApp.pdb
-C:\Users\yuajs\Desktop\Listacompras@\ListaCompras.ConsoleApp\obj\Debug\net10.0\ListaCompras.ConsoleApp.dll
-C:\Users\yuajs\Desktop\Listacompras@\ListaCompras.ConsoleApp\obj\Debug\net10.0\refint\ListaCompras.ConsoleApp.dll
-C:\Users\yuajs\Desktop\Listacompras@\ListaCompras.ConsoleApp\obj\Debug\net10.0\ListaCompras.ConsoleApp.pdb
-C:\Users\yuajs\Desktop\Listacompras@\ListaCompras.ConsoleApp\obj\Debug\net10.0\ListaCompras.ConsoleApp.genruntimeconfig.cache
-C:\Users\yuajs\Desktop\Listacompras@\ListaCompras.ConsoleApp\obj\Debug\net10.0\ref\ListaCompras.ConsoleApp.dll
+C:\Users\yuajs\Desktop\Listacompras@\ListaCompras.ConsoleApp\obj\Debug\net10.0\ListaCompras.ConsoleApp.sourcelink.json
