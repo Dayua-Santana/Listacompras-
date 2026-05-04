@@ -2,7 +2,7 @@ using ListaCompras.ConsoleApp.Compartilhado;
 
 namespace ListaCompras.ConsoleApp.ModuloListaCompras;
 
-public class TelaListaCompras : TelaBase<ListaCompras>, ITelaOpcoes, ITelaCrud
+public class TelaListaCompras : TelaBase<ListaDeCompras>, ITelaOpcoes, ITelaCrud
 {
     public TelaListaCompras(RepositorioListaCompras repositorio)
         : base("Lista de Compras", repositorio)
@@ -14,7 +14,7 @@ public class TelaListaCompras : TelaBase<ListaCompras>, ITelaOpcoes, ITelaCrud
         if (deveExibirCabecalho)
             ExibirCabecalho("Visualização de Listas de Compras");
 
-        List<ListaCompras> listas = repositorio.SelecionarTodos();
+        List<ListaDeCompras> listas = repositorio.SelecionarTodos();
 
         if (listas.Count == 0)
         {
@@ -33,7 +33,7 @@ public class TelaListaCompras : TelaBase<ListaCompras>, ITelaOpcoes, ITelaCrud
      );
 
 
-        foreach (ListaCompras l in listas)
+        foreach (ListaDeCompras l in listas)
         {
             Console.WriteLine(
                 "{0, -7} | {1, -25} | {2, -12:dd/MM/yyyy} | {3, -10} | {4, -7} | R$ {5, -7:F2}",
@@ -54,15 +54,15 @@ public class TelaListaCompras : TelaBase<ListaCompras>, ITelaOpcoes, ITelaCrud
         }
     }
 
-    protected override ListaCompras ObterDadosCadastrais()
+    protected override ListaDeCompras ObterDadosCadastrais()
     {
         Console.Write("Digite o nome da lista: ");
         string nome = Console.ReadLine() ?? string.Empty;
 
-        return new ListaCompras(nome);
+        return new ListaDeCompras(nome);
     }
 
-    protected override List<string> ValidarExclusaoRegistro(ListaCompras registro)
+    protected override List<string> ValidarExclusaoRegistro(ListaDeCompras registro)
     {
         List<string> erros = new List<string>();
 

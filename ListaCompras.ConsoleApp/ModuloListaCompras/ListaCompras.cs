@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ListaCompras.ConsoleApp.ModuloListaCompras;
 
-public class ListaCompras : EntidadeBase
+public class ListaDeCompras : EntidadeBase
 {
     public string Nome { get; set; }
 
@@ -12,7 +12,7 @@ public class ListaCompras : EntidadeBase
 
     public List<Item> Itens { get; set; } = new List<Item>();
 
-    public ListaCompras(string nome)
+    public ListaDeCompras(string nome)
     {
         Nome = nome;
     }
@@ -29,14 +29,18 @@ public class ListaCompras : EntidadeBase
 
     public override List<string> Validar()
     {
-        return new List<string>();
+        List<string> erros = new List<string>();
+
+        if (string.IsNullOrWhiteSpace(Nome) || Nome.Length < 3 || Nome.Length > 100)
+            erros.Add("O campo \"Nome\" deve conter entre 3 e 100 caracteres.");
+        return erros;
     }
 
 
 
     public override void AtualizarDados(EntidadeBase entidadeAtualizada)
     {
-        ListaCompras lista = (ListaCompras)entidadeAtualizada;
+        ListaDeCompras lista = (ListaDeCompras)entidadeAtualizada;
         Nome = lista.Nome;
         Status = lista.Status;
         Itens = lista.Itens;
